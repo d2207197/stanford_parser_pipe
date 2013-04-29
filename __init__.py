@@ -7,7 +7,7 @@ includes_dir = os.path.dirname(os.path.abspath(__file__))
 parser_path = os.path.join(includes_dir,'stanford-parser.jar')
 model_path = os.path.join(includes_dir, 'englishPCFG.ser')
 
-command = 'java -mx150m -cp "%s": edu.stanford.nlp.parser.lexparser.LexicalizedParser -sentences newline -outputFormat wordsAndTags,penn,typedDependencies "%s" -' % (parser_path, model_path)
+command = 'java -mx150m -cp "%s": edu.stanford.nlp.parser.lexparser.LexicalizedParser -sentences newline -outputFormat wordsAndTags,penn,typedDependencies -outputFormatOptions basicDependencies "%s" -' % (parser_path, model_path)
 
 handle = subprocess.Popen(command,
 	bufsize=1,
