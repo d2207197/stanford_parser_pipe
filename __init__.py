@@ -1,3 +1,5 @@
+#/usr/bin/env python
+# -*- coding: utf-8 -*-
 import subprocess, os, sys, threading, Queue
 from collections import namedtuple
 import output_parser
@@ -7,7 +9,8 @@ includes_dir = os.path.dirname(os.path.abspath(__file__))
 parser_path = os.path.join(includes_dir,'stanford-parser.jar')
 model_path = os.path.join(includes_dir, 'englishPCFG.ser')
 
-command = 'java -mx2048m -cp "%s": edu.stanford.nlp.parser.lexparser.LexicalizedParser -sentences newline -outputFormat wordsAndTags,penn,typedDependenciesCollapsed -outputFormatOptions basicDependencies "%s" -' % (parser_path, model_path)
+command = 'java -mx2048m -cp "%s": edu.stanford.nlp.parser.lexparser.LexicalizedParser -sentences newline -tokenized -escaper edu.stanford.nlp.process.PTBEscapingProcessor -outputFormat wordsAndTags,penn,typedDependenciesCollapsed -outputFormatOptions basicDependencies "%s" -' % (parser_path, model_path)
+
 
 handle = subprocess.Popen(command,
 	bufsize=1,
