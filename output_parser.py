@@ -69,7 +69,7 @@ def parse_deps(deps, words):
   relations = deps.strip().split('\n')
   for relation in relations:
     print relation
-    match = re.match('([a-z_]+)\((.*), (.*)\)', relation)
+    match = re.match('([a-z_]+)\((.*?)\'?, (.*?)\'?\)', relation)
     print match.group(2)
     print match.group(3)
     if match == None:
