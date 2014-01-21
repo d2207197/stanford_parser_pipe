@@ -68,10 +68,10 @@ def parse_deps(deps, words):
   r = []
   relations = deps.strip().split('\n')
   for relation in relations:
-    print relation
-    match = re.match('([a-z_]+)\((.*?)\'?, (.*?)\'?\)', relation)
-    print match.group(2)
-    print match.group(3)
+    # print relation
+    match = re.match(r'([a-z_\\/]+)\((.*?)\'?, (.*?)\'?\)', relation)
+    # print match.group(2)
+    # print match.group(3)
     if match == None:
       print deps
       raise Exception('Could not parse dependency notation')
