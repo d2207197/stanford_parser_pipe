@@ -1,3 +1,5 @@
+#/usr/bin/env python
+# -*- coding: utf-8 -*-
 import re
 from collections import namedtuple
 
@@ -55,6 +57,7 @@ def parse_penn(penn):
 Relation = namedtuple('R', ['relation', 'relation_set', 'governor', 'dependent'])
 
 def lookup(wt, words):
+  # print wt
   index = int(wt.rsplit('-', 1)[1].strip())-1
   if index == -1:
     #the root
@@ -65,7 +68,10 @@ def parse_deps(deps, words):
   r = []
   relations = deps.strip().split('\n')
   for relation in relations:
-    match = re.match('([a-z_]+)\((.*),(.*)\)', relation)
+    print relation
+    match = re.match('([a-z_]+)\((.*), (.*)\)', relation)
+    print match.group(2)
+    print match.group(3)
     if match == None:
       print deps
       raise Exception('Could not parse dependency notation')
